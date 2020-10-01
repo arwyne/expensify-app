@@ -1,7 +1,8 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import expensesReducer from "../reducers/expenses";
-import filtersReducer from "../reducers/filters";
-import thunk from "redux-thunk";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux"
+import thunk from "redux-thunk"
+import expensesReducer from "../reducers/expenses"
+import filtersReducer from "../reducers/filters"
+import authReducer from "../reducers/auth"
 
 // Store creation
 // const store = createStore(
@@ -23,19 +24,23 @@ import thunk from "redux-thunk";
 //   return store;
 // };
 
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose
 const composeEnhancers =
-  window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
+  (typeof window !== "undefined" &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose
 
 const configureStore = () => {
   const store = createStore(
     combineReducers({
       expenses: expensesReducer,
       filters: filtersReducer,
+      auth: authReducer,
     }),
     composeEnhancers(applyMiddleware(thunk))
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
-  return store;
-};
+  )
+  return store
+}
 
-export default configureStore;
+export default configureStore
