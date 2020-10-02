@@ -1,29 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   // making the root font-size to 10px
   font-size: 62.5%;
 }
 
 body {
-  // background-color: $dark-blue;
+  color: $dark-grey;
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
+  line-height: 1.6;
 }
 
 button {
   cursor: pointer;
 }
-
-// button:focus {
-//   outline-color: $purple;
-// }
-
-button:disabled {
-  cursor: default;
-}
-
-// input:focus {
-//   outline-color: $purple;
-// }
 
 .is-active {
   font-weight: bold;

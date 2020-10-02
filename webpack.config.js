@@ -1,18 +1,18 @@
-const path = require("path");
+const path = require("path")
 // const ExtractTextPlugin = require("extract-text-webpack-plugin"); //depricated
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const webpack = require("webpack")
 
-require("dotenv").config({ path: ".env.development" });
+require("dotenv").config({ path: ".env.development" })
 
 module.exports = (env) => {
-  const isProduction = env === "production";
+  const isProduction = env === "production"
   const CSSExtract = new MiniCssExtractPlugin({
     filename: "styles.css",
-  });
+  })
 
   return {
-    entry: "./src/app.js",
+    entry: ["babel-polyfill", "./src/app.js"],
     output: {
       path: path.join(__dirname, "public", "dist"),
       filename: "bundle.js",
@@ -33,6 +33,7 @@ module.exports = (env) => {
             {
               loader: "css-loader",
               options: {
+                url: false,
                 sourceMap: true,
               },
             },
@@ -83,5 +84,5 @@ module.exports = (env) => {
       historyApiFallback: true,
       publicPath: "/dist/",
     },
-  };
-};
+  }
+}
